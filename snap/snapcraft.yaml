@@ -2,7 +2,7 @@ name: fractal
 adopt-info: fractal
 grade: stable 
 confinement: strict
-base: core24
+base: core26
 platforms:
   amd64:
   arm64:
@@ -174,9 +174,9 @@ parts:
   cleanup:
     after: [deps, gst-plugin-gtk4, pipewire, fractal, grass, libshumate]
     plugin: nil
-    build-snaps: [core24, gtk-common-themes, gnome-46-2404]
+    build-snaps: [core26, gtk-common-themes, gnome-core26]
     override-prime: |
       set -eux
-      for snap in "core24" "gtk-common-themes" "gnome-46-2404"; do
+      for snap in "core26" "gtk-common-themes" "gnome-core26"; do
         cd "/snap/$snap/current" && find . -type f,l -name *.so.* -exec rm -f "$CRAFT_PRIME/{}" \;
       done
