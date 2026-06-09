@@ -42,11 +42,15 @@ parts:
 
   grass:
     plugin: rust
+    rust-channel: none # disable rustup, use build-packages
     source: https://github.com/connorskees/grass.git
     source-type: git
     source-tag: '0.13.4'
     organize:
       grass: usr/bin/
+    build-packages:
+      - rustc
+      - cargo
 
   fractal:
     after: [ libshumate, pipewire, grass, gst-plugin-gtk4 ]
@@ -67,6 +71,8 @@ parts:
       - libclang-dev
       - libspa-0.2-dev
       - xdg-desktop-portal-dev
+      - rustc
+      - cargo
     build-environment:
       - CARGO_BUILD_JOBS: $CRAFT_PARALLEL_BUILD_COUNT
       - PKG_CONFIG_PATH: $CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig:$PKG_CONFIG_PATH 
